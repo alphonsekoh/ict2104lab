@@ -54,7 +54,7 @@ void PORT1_IRQHandler(void){
         GPIO_clearInterruptFlag(GPIO_PORT_P1, GPIO_PIN1);
     }
 
-    if(GPIO_getEnabledInterruptStatus(GPIO_PORT_P1) == GPIO_PIN4){
+    if(GPIO_getInputPinValue(GPIO_PORT_P1, GPIO_PIN4) == ((uint8_t)0x00)){
         if (counter % 3 == 0){
             GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2);
             GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN0);
