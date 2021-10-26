@@ -57,13 +57,19 @@
 /* Timer_A PWM Configuration Parameter */
 Timer_A_PWMConfig pwmConfig =
 {
-        TIMER_A_CLOCKSOURCE_SMCLK,
-        TIMER_A_CLOCKSOURCE_DIVIDER_24,
-        10000,
+        TIMER_A_CLOCKSOURCE_SMCLK,  // Set SMCLK source as 3 MHz as default
+        TIMER_A_CLOCKSOURCE_DIVIDER_24, // 3 MHz/24 = 125 kHz 
+        10000, // Period of 10000, this would ascertain the interrupt occurance. 1 / 125 kHz = 8 us, 8 us * 10000 = 80000 us = 80 ms. Max interrupt time
         TIMER_A_CAPTURECOMPARE_REGISTER_1,
         TIMER_A_OUTPUTMODE_RESET_SET,
-        1000
+        1000 // Pulse to determine the Duty cycle; min interrupt time
 };
+
+/**
+ * Duty Cycle = PULSE / PERIOD
+ * 1000 / 10000 = 10 %
+ **/
+
 Timer_A_PWMConfig pwmConfig2 =
 {
         TIMER_A_CLOCKSOURCE_SMCLK,
